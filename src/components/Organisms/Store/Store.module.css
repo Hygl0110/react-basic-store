@@ -1,0 +1,7 @@
+.products-Container {
+  display: flex;
+}
+
+.item-img {
+  max-width: 300px;
+}
