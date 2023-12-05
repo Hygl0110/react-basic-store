@@ -1,7 +1,19 @@
-.products-Container {
+.productsContainer {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 16px;
 }
 
-.item-img {
+.product {
+  width: 100%;
   max-width: 300px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+.itemImg {
+  max-width: 100%;
+  height: auto;
 }

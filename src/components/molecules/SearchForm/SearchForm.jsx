@@ -1,4 +1,3 @@
-import React from "react";
 import InputText from "../../atoms/InputText/InputText";
 import Button from "../../atoms/Button/Button";
 
