@@ -14,10 +14,11 @@ const useCartListById = (inputData) => {
   }
 
   function removeToCart(id) {
-    const { price } = cartItems[id];
-    const newTotalPrice = totalPrice - price;
     const newCartItems = [...cartItems];
     newCartItems.splice(id, 1);
+    const { price } = cartItems[id];
+    const newTotalPrice = totalPrice - price;
+
     setTotalPrice(Number(newTotalPrice.toFixed(2)));
     setCartItems(newCartItems);
   }
