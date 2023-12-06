@@ -1,11 +1,19 @@
-import React from "react";
+import styles from "./Nav.module.css";
 import Button from "../../atoms/Button/Button";
 
 function Nav(props) {
   return (
-    <div>
-      <Button text="Store" onClick={props.onClickStore} />
-      <Button text="Cart" onClick={props.onClickCart} />
+    <div className={styles.nav}>
+      <Button
+        text="Store"
+        onClick={props.onClickStore}
+        className={styles.button}
+      />
+      <Button
+        text="Cart"
+        onClick={props.onClickCart}
+        className={styles.button}
+      />
     </div>
   );
 }
