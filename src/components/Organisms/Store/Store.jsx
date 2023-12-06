@@ -9,10 +9,14 @@ function Store(props) {
       <h2>Store</h2>
 
       <>
-        <InputText />
+        <InputText
+          placeholder="Search Item..."
+          onChange={props.onChangeSearch}
+          value={props.valueSearch}
+        />
       </>
       <>
-        <Items {...props} />
+        <Items {...props} text="Add to cart" />
       </>
     </div>
   );

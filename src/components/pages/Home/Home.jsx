@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 //Import copmponents
 import Header from "../../Organisms/Header/Header";
@@ -9,19 +9,18 @@ import Cart from "../../Organisms/Cart/Cart";
 
 //Import personalized hooks
 import useApiFetch from "../../../hooks/useApiFetch";
+import useFilterByTitle from "../../../hooks/useFilterByTitle";
 
 function Home() {
   //currentPage state
   const [currentPage, setCurrentPage] = useState("store");
 
   /*Store*/
-  const [items, loadind, error] = useApiFetch(
-    "https://fakestoreapi.com/products"
-  );
+  const [data] = useApiFetch("https://fakestoreapi.com/products");
 
-  useEffect(() => {
-    console.log(items, loadind, error);
-  }, [items, loadind, error]);
+  //Search
+  const [filteredItems, searchTerm, handleChangeSearch] =
+    useFilterByTitle(data);
 
   return (
     <div className={styles.home}>
@@ -31,7 +30,13 @@ function Home() {
       />
 
       <>
-        {currentPage === "store" && <Store items={items} />}
+        {currentPage === "store" && (
+          <Store
+            items={filteredItems}
+            onChangeSearch={(e) => handleChangeSearch(e.target.value)}
+            valueSearch={searchTerm}
+          />
+        )}
 
         {currentPage === "cart" && <Cart />}
       </>

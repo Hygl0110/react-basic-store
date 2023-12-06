@@ -5,8 +5,8 @@ function InputText(props) {
     <input
       type="text"
       placeholder={props.placeholder}
-      id={props.name}
-      required
+      onChange={props.onChange}
+      value={props.value}
     />
   );
 }
