@@ -1,13 +1,13 @@
 import React from "react";
-import { Renderer, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Cart from "../components/Organisms/Cart/Cart";
 
 test("renders Cart component", () => {
-  const { getBytext } = render(<Cart total={50} />);
+  render(<Cart total={50} items={[]} />);
 
-  const cartTitle = getBytext(/Cart/i);
-  expected(cartTitle).toBeInTheDocument();
+  const cartTitle = screen.getByText(/Cart/i);
+  expect(cartTitle).toBeInTheDocument();
 
-  const totalText = getBytext(/Total: \$50/i);
-  expected(totalText).toBeInTheDocument();
+  const totalText = screen.getByText(/Total: \$50/i);
+  expect(totalText).toBeInTheDocument();
 });
