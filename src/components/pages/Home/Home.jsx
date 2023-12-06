@@ -10,6 +10,7 @@ import Cart from "../../Organisms/Cart/Cart";
 //Import personalized hooks
 import useApiFetch from "../../../hooks/useApiFetch";
 import useFilterByTitle from "../../../hooks/useFilterByTitle";
+import useCartListById from "../../../hooks/useCartListById";
 
 function Home() {
   //currentPage state
@@ -18,13 +19,18 @@ function Home() {
   /*Store*/
   const [data] = useApiFetch("https://fakestoreapi.com/products");
 
-  //Search
+  //  --Search--
   const [filteredItems, searchTerm, handleChangeSearch] =
     useFilterByTitle(data);
+
+  /*Cart*/
+  const [cartItems, totalPrice, addToCart, removeToCart] =
+    useCartListById(filteredItems);
 
   return (
     <div className={styles.home}>
       <Header
+        numberOfItems={cartItems.length}
         onClickStore={() => setCurrentPage("store")}
         onClickCart={() => setCurrentPage("cart")}
       />
@@ -35,10 +41,17 @@ function Home() {
             items={filteredItems}
             onChangeSearch={(e) => handleChangeSearch(e.target.value)}
             valueSearch={searchTerm}
+            onClick={(e) => addToCart(e.target.id)}
           />
         )}
 
-        {currentPage === "cart" && <Cart />}
+        {currentPage === "cart" && (
+          <Cart
+            items={cartItems}
+            total={totalPrice}
+            onClick={(e) => removeToCart(e.target.id)}
+          />
+        )}
       </>
 
       <Footer />

@@ -10,7 +10,7 @@ function Nav(props) {
         className={styles.button}
       />
       <Button
-        text="Cart"
+        text={`Cart ( ${props.numberOfItems} )`}
         onClick={props.onClickCart}
         className={styles.button}
       />
